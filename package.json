@@ -1,0 +1,19 @@
+{
+  "name": "learn-nodejs-selenium-webdriver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebastianPetak/learn-nodejs-selenium-webdriver.git"
+  },
+  "author": "Sebastian Petak",
+  "license": "ISC",
+  "devDependencies": {
+    "chromedriver": "^2.29.0",
+    "selenium-webdriver": "^3.4.0"
+  }
+}
