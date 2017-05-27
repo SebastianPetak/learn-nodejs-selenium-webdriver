@@ -9,27 +9,13 @@ var driver = new webdriver.Builder().forBrowser('chrome').build();
 driver.manage().window().maximize();
 // delete all cookies
 driver.manage().deleteAllCookies();
-// navigate to google.com
-driver.get('http://www.google.com/').then(function() {
-	console.log('Find google query input');
-	return driver.findElement(By.name('q'));
-}).then(function(q) {
-	console.log('Type "webdriver" into google query input');
-	return q.sendKeys('webdriver');
-}).then(function() {
-	console.log('Find google search submit button');
-	return driver.findElement(By.name('btnG'));
-}).then(function(btnG) {
-	console.log('click google search submit button');
-	return btnG.click();
-}).then(function() {
-	console.log('Wait until title of page is "webdriver - Google Search"');
-	driver.wait(until.titleIs('webdriver - Google Search'), 1000);
-}).then(function() {
-	console.log('get title method');
-	return driver.getTitle();
-}).then(function(title) {
-	console.log(title);
+
+/* Count how many internal links are on the /wiki/Wiki page */
+
+driver.get('http://en.wikipedia.org/wiki/Wiki').then(function() {
+	console.log('find elements by css class');
+	return driver.findElements(By.css('[href^="/wiki/"]'));
+}).then(function(links) {
+	console.log('Found', links.length, 'wiki links');
+	driver.quit();
 });
-// close browser
-driver.quit();
