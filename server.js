@@ -29,13 +29,21 @@ driver.get('http://google.com').then(function() {
 	driver.wait(until.titleIs('iolearn.com Video Tutorials - Google Search'), 1000);
 }).then(function() {
 	console.log('Find link to iolearn.com');
-	return driver.findElements(By.css('[href="http://iolearn.com/"]'));
+	return driver.findElements(By.css('[href="https://iolearn.com/"]'));
 }).then(function(results) {
-	console.log('return first result')
+	console.log('return the first result of findElements')
 	return results[0];
 }).then(function(link) {
 	console.log('click link');
 	link.click();
 }).then(function() {
+	console.log('Wait for title: "Online video tutorials and trainings | iolearn.com"');
+	driver.wait(until.titleIs('Online video tutorials and trainings | iolearn.com'), 3000);
+}).then(function() {
+	console.log('Get title method');
+	return driver.getTitle();
+}).then(function(title) {
+	console.log('The title is : ' + title);
+}).then(function() {
 	driver.quit();
-})
+});
