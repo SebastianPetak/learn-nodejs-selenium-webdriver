@@ -10,24 +10,26 @@ driver.manage().window().maximize();
 // delete all cookies
 driver.manage().deleteAllCookies();
 // navigate to google.com
-driver.get('http://www.google.com/');
-// search webdriver in google
-driver.findElement(By.name('q')).sendKeys('webdriver');
-// click on search button
-driver.findElement(By.name('btnG')).click();
-// wait for page title
-driver.wait(until.titleIs('webdriver - Google Search'), 1000);
-
-var promise = driver.getTitle();
-
-promise.then(function(title) {
-	console.log('Title is: ' + title);
-})
-
-driver.getTitle()
-.then(function(title) {
-	console.log('Title is still ' + title);
-})
-
+driver.get('http://www.google.com/').then(function() {
+	console.log('Find google query input');
+	return driver.findElement(webdriver.By.name('q'));
+}).then(function(q) {
+	console.log('Type "webdriver" into google query input');
+	return q.sendKeys('webdriver');
+}).then(function() {
+	console.log('Find google search submit button');
+	return driver.findElement(webdriver.By.name('btnG'));
+}).then(function(btnG) {
+	console.log('click google search submit button');
+	return btnG.click();
+}).then(function() {
+	console.log('Wait until title of page is "webdriver - Google Search"');
+	driver.wait(until.titleIs('webdriver - Google Search'), 1000);
+}).then(function() {
+	console.log('get title method');
+	return driver.getTitle();
+}).then(function(title) {
+	console.log(title);
+});
 // close browser
 driver.quit();
