@@ -12,13 +12,13 @@ driver.manage().deleteAllCookies();
 // navigate to google.com
 driver.get('http://www.google.com/').then(function() {
 	console.log('Find google query input');
-	return driver.findElement(webdriver.By.name('q'));
+	return driver.findElement(By.name('q'));
 }).then(function(q) {
 	console.log('Type "webdriver" into google query input');
 	return q.sendKeys('webdriver');
 }).then(function() {
 	console.log('Find google search submit button');
-	return driver.findElement(webdriver.By.name('btnG'));
+	return driver.findElement(By.name('btnG'));
 }).then(function(btnG) {
 	console.log('click google search submit button');
 	return btnG.click();
